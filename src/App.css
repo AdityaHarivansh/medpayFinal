@@ -41,3 +41,12 @@
  .col-lg-4{
    text-align: center;
  }
+
+ .ant-tag{
+   font-size: 1.25rem !important;
+   padding: 0.4rem !important;
+ }
+ label{
+  font-size: 1rem !important;
+  font-weight: bold;
+ }

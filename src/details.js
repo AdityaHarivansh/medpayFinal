@@ -1,14 +1,16 @@
+import { CloseSquareFilled, CloseSquareOutlined } from "@ant-design/icons";
 import { Card, Divider, Tag } from "antd";
 import React, { useState } from "react";
 import CardDetails from "./cardDetails";
 
 const Details = (props) => {
+
+    //Variable Decalrations
     const [cardIndex, setCardIndex] = useState(null)
     const [filteredData, setFilteredData] = useState(props.dateData)
     const [filterValue, setFilterValue] = useState(null)
 
-    console.log(props.dateData)
-
+    //to set the filter according to which the cards will be filtered
     const setFilter = (value) => {
         setFilterValue(value)
         if (value === "is_potentially_hazardous_asteroid") {
@@ -31,15 +33,14 @@ const Details = (props) => {
             setFilteredData(props.dateData)
         }
     }
-    console.log(filteredData)
     return (
         <div>
             {
                 cardIndex && (
                     <div>
-                        <div className="row justify-content-md-center">
+                        <div className="row justify-content-md-center" id="main-card">
                             <div className="col-lg-12">
-                                <p style={{ float: "right", cursor: "pointer" }} onClick={() => setCardIndex(null)}>X</p>
+                                <p style={{ float: "right", cursor: "pointer" }} onClick={() => {setCardIndex(null)}}><CloseSquareOutlined color="white" /></p>
                             </div>
                         </div>
                         <div className="row">
@@ -70,6 +71,7 @@ const Details = (props) => {
                 {filteredData && filteredData.map((acc, i) => {
                     return (
                         <div className="col-lg-4">
+                            <a href="#main-card">
                             <Card title={acc.name} style={{ marginTop: "1rem", cursor: "pointer" }} onClick={() => setCardIndex(i)}>
                                 <p>Id : {acc.id}</p>
                                 <p>Neo Reference Id : {acc.neo_reference_id}</p>
@@ -77,6 +79,7 @@ const Details = (props) => {
                                 <p>Potentially Hazardous : <Tag color={acc.is_potentially_hazardous_asteroid ? "Red" : "Green"} >{acc.is_potentially_hazardous_asteroid ? "Yes" : "No"}</Tag></p>
                                 <p>Sentry Object : <Tag color={acc.is_sentry_object ? "Red" : "Green"} >{acc.is_sentry_object ? "Yes" : "No"}</Tag></p>
                             </Card>
+                            </a>
                         </div>
                     )
                 })}

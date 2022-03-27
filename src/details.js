@@ -1,14 +1,18 @@
 import { CloseSquareFilled, CloseSquareOutlined } from "@ant-design/icons";
 import { Card, Divider, Tag } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CardDetails from "./cardDetails";
 
 const Details = (props) => {
 
     //Variable Decalrations
     const [cardIndex, setCardIndex] = useState(null)
-    const [filteredData, setFilteredData] = useState(props.dateData)
+    const [filteredData, setFilteredData] = useState(null)
     const [filterValue, setFilterValue] = useState(null)
+
+    useEffect(()=>{
+        setFilteredData(props.dateData)
+    },[props.dateData])
 
     //to set the filter according to which the cards will be filtered
     const setFilter = (value) => {
